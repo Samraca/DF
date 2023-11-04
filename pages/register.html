@@ -82,24 +82,24 @@
                 </style>
                 <div class="row">
                     <div class="col-12 text-left pb-50 text-primary">
-                      <h1 style="color: white">Información Personal</h1>
+                        <h1 style="color: white">Información Personal</h1>
                     </div>
-                  </div>
+                </div>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="bg-black p-4">
                             <form>
                                 <div class="form-group mb-20 pb-15">
                                     <label for="campo1" class="h2">Nombre</label>
-                                    <input type="text" class="form-control" id="campo1" name="campo1">
+                                    <input type="text" class="form-control" id="nombre" name="campo1">
                                 </div>
                                 <div class="form-group mb-20 pb-15">
                                     <label for="campo2" class="h2">Email</label>
-                                    <input type="text" class="form-control" id="campo2" name="campo2">
+                                    <input type="text" class="form-control" id="correo" name="campo2">
                                 </div>
                                 <div class="form-group mb-20 pb-15">
                                     <label for="campo2" class="h2">Descripción Personal (Háblanos de ti)</label>
-                                    <input type="text" class="form-control" id="campo2" name="campo2">
+                                    <input type="text" class="form-control" id="descripcion" name="campo2">
                                 </div>
                             </form>
                         </div>
@@ -109,19 +109,19 @@
                             <form>
                                 <div class="form-group mb-20 pb-15">
                                     <label for="campo3" class="h2">Contraseña</label>
-                                    <input type="text" class="form-control" id="campo3" name="campo3">
+                                    <input type="text" class="form-control" id="contrasena" name="campo3">
                                 </div>
                                 <div class="form-group mb-20 pb-15">
                                     <label for="campo4" class="h2">Confirmar Contraseña</label>
-                                    <input type="text" class="form-control" id="campo4" name="campo4">
+                                    <input type="text" class="form-control" id="confirmcontrasena" name="campo4">
                                 </div>
                                 <div class="form-group mb-20 pb-15">
                                     <label for="campo4" class="h2">Edad</label>
-                                    <input type="number" class="form-control" id="campo4" name="campo4">
+                                    <input type="number" class="form-control" id="edad" name="campo4">
                                 </div>
                             </form>
                         </div>
-                        <a href="./login.html" class="btn btn-primary btn-no-hover:hover">Registrate</a>
+                        <a href="./login.html" class="btn btn-primary btn-no-hover:hover" id="">Registrate</a>
                     </div>
                 </div>
             </div>
@@ -240,7 +240,68 @@
     <!-- Jquery Plugins, main Jquery -->
     <script src="./assets/js/plugins.js"></script>
     <script src="./assets/js/main.js"></script>
+    <script>
+        document.getElementById("login_button").addEventListener("click", function () {
+            var username = document.getElementById("email").value;
+            var password = document.getElementById("psw").value;
 
+            // Llamar a tu función JavaScript con el usuario y la contraseña
+            miFuncion(username, password);
+        });
+
+        function miFuncion(usuario, contrasena) {
+            const url = 'https://gkbbkkjfrezfjcbutorv.supabase.co/rest/v1/usuarios?select=correo,contrasena'; // URL de la API que proporciona la lista de contraseñas
+            const headers = {
+                'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdrYmJra2pmcmV6ZmpjYnV0b3J2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkxMjg3NTksImV4cCI6MjAxNDcwNDc1OX0.7ASYp9DRHvCCrLE5xzEc8_WCYtkTaQ_lvVv97UquTxA',
+                'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdrYmJra2pmcmV6ZmpjYnV0b3J2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkxMjg3NTksImV4cCI6MjAxNDcwNDc1OX0.7ASYp9DRHvCCrLE5xzEc8_WCYtkTaQ_lvVv97UquTxA',
+                'Content-Type': 'application/json',
+                'Prefer': 'return=minimal'
+            };
+
+            const data ={
+                nombre : "",
+                descripcion : "",
+                correo : "",
+                contrasena : "",
+                edad : ""
+            }
+
+            // Realizar una solicitud a la API para obtener la lista de contraseñas
+            return fetch(url, {
+                method: 'GET',
+                headers: headers
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Error al obtener la lista de contraseñas. Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(listaContrasenas => {
+                    // Verificar si el usuario y la contraseña coinciden con alguna entrada en la lista de contraseñas
+                    const credencialValida = listaContrasenas.some(credencial => {
+                        return credencial.correo === usuario && credencial.contrasena === contrasena;
+                    });
+                    console.log(credencialValida)
+                    if (credencialValida) {
+                        window.location.href = "./blog.html";
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    return false; // Devolver false en caso de error
+                });
+        }
+
+        verificarCredenciales(usuario, contrasena)
+            .then(credencialValida => {
+                if (credencialValida) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+    </script>
 </body>
 
 </html>
