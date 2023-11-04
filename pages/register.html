@@ -47,20 +47,9 @@
                     <div class="menu-wrapper d-flex align-items-center justify-content-between">
                         <!-- Logo -->
                         <div class="logo">
-                            <a href="./blog.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                            <a href="./index.html"><img src="assets/img/logo/logo.png" alt=""></a>
                         </div>
                         <!-- Main-menu -->
-                        <div class="main-menu f-right d-none d-lg-block">
-                            <nav>
-                                <ul id="navigation">
-                                    <li><a href="index.html">Perfil</a></li>
-                                    <li><a href="about.html">Comunidad</a></li>
-                                    <li><a href="courses.html">Retos</a></li>
-
-
-                                </ul>
-                            </nav>
-                        </div>
                         <!-- Header-btn -->
                         <div class="header-btns d-none d-lg-block f-right">
                             <a href="login.html" class="btn">Login</a>
@@ -91,35 +80,25 @@
                         text-decoration: none;
                     }
                 </style>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="bg-black p-4">
-                                <form>
-                                    <!-- Botón más circular para añadir imagen de perfil con icono de usuario -->
-                                    <div class="profile-image-upload">
-                                        <label for="profileImage"
-                                            class="btn btn-primary btn-no-hover:hover rounded-circle  d-flex justify-content-center align-items-center">
-                                            <i class="fas fa-user"></i>
-                                            <input type="file" id="profileImage" name="profileImage" accept="image/*"
-                                                style="display: none;">
-                                        </label>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+                <div class="row">
+                    <div class="col-12 text-left pb-50 text-primary">
+                      <h1 style="color: white">Información Personal</h1>
                     </div>
-                </div>
+                  </div>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="bg-black p-4">
                             <form>
-                                <div class="form-group">
-                                    <label for="campo1">Campo 1</label>
+                                <div class="form-group mb-20 pb-15">
+                                    <label for="campo1" class="h2">Nombre</label>
                                     <input type="text" class="form-control" id="campo1" name="campo1">
                                 </div>
-                                <div class="form-group">
-                                    <label for="campo2">Campo 2</label>
+                                <div class="form-group mb-20 pb-15">
+                                    <label for="campo2" class="h2">Email</label>
+                                    <input type="text" class="form-control" id="campo2" name="campo2">
+                                </div>
+                                <div class="form-group mb-20 pb-15">
+                                    <label for="campo2" class="h2">Descripción Personal (Háblanos de ti)</label>
                                     <input type="text" class="form-control" id="campo2" name="campo2">
                                 </div>
                             </form>
@@ -128,16 +107,17 @@
                     <div class="col-md-6">
                         <div class="bg-black p-4">
                             <form>
-                                <div class="form-group">
-                                    <label for="campo3">Campo 3</label>
+                                <div class="form-group mb-20 pb-15">
+                                    <label for="campo3" class="h2">Contraseña</label>
                                     <input type="text" class="form-control" id="campo3" name="campo3">
                                 </div>
-                                <div class="form-group">
-                                    <label for="campo4">Campo 4</label>
+                                <div class="form-group mb-20 pb-15">
+                                    <label for="campo4" class="h2">Confirmar Contraseña</label>
                                     <input type="text" class="form-control" id="campo4" name="campo4">
                                 </div>
                             </form>
                         </div>
+                        <a href="./login.html" class="btn btn-primary btn-no-hover:hover">Registrate</a>
                     </div>
                 </div>
             </div>
