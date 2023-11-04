@@ -8,6 +8,6 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'pages', 'index.html'));
 });
 
-app.listen(3000, () => {
-    console.log('Servidor Express en ejecución en el puerto 3000');
+app.listen(4000, () => {
+    console.log('Servidor Express en ejecución');
 });
